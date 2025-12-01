@@ -60,7 +60,7 @@ class Matricula(models.Model):
    def __str__(self):
        return f"{self.aluno.nome} - {self.turma.nome}"
    
-class presenca(models.Model):
+class Presenca(models.Model):
     matricula_id = models.ForeignKey(Matricula, on_delete=models.CASCADE, related_name='presencas') 
     STATUS_CHOICES = (
             ('Presente', 'Presente'),
