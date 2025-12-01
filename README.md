@@ -16,7 +16,7 @@
 ## Orientador (link para o perfil do orientador)
 
 [![LinkedIn Henrique Pereira](https://img.shields.io/badge/LinkedIn-Henrique_Freitas-%230077B5.svg?labelColor=%23FFFFFF&logo=linkedin)](https://br.linkedin.com/in/henrique-freitas-69b836b4)
-[![GitHub Henrique](https://img.shields.io/badge/GitHub-henrique_(Henrique_Freitas)-%23181717.svg?logo=github&logoColor=white)](https://github.com/henriquepff/)
+[![GitHub Henrique](https://img.shields.io/badge/GitHub-henriquepff_(Henrique_Freitas)-%23181717.svg?logo=github&logoColor=white)](https://github.com/henriquepff/)
 [![Lattes Henrique Pereira](https://img.shields.io/badge/Lattes-Henrique_Freitas-green.svg?logo=cnpq&logoColor=white)](https://buscatextual.cnpq.br/buscatextual/visualizacv.do;jsessionid=8B62CFB2D86DC88AE42BDFC0BF85BBBE.buscatextual_0)
 
 ## Sumário
