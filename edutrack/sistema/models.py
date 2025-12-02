@@ -35,8 +35,8 @@ class Turma(models.Model):
         ) 
     status = models.CharField(choices=STATUS_CHOICES, default='Ativa') 
     data_inicio = models.DateField()
-    data_fim = models.DateField()
-    professor    = models.ForeignKey(Professor, on_delete=models.CASCADE) 
+    data_fim = models.DateField(null=True)
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
     alunoRep = models.OneToOneField(Aluno,on_delete=models.SET_NULL,unique= True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
 
