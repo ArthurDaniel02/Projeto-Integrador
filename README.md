@@ -67,19 +67,18 @@ O sistema aborda o desafio crítico do absenteísmo e da evasão escolar no ensi
 
 Liste todos os pacotes Python necessários, com versões recomendadas. Utilize um formato de tabela para maior clareza.
 
-| Pacote                  | Versão       | Descrição                                      |
-|-------------------------|--------------|------------------------------------------------|
-| Django                  | >=5.0        | Framework web principal                        |
-| djangorestframework     | latest       | Toolkit para construção de APIs REST           |
-| django-filter           | 25.2         | Biblioteca para filtragem de consultas         |
-| ...                     | ...          | ...                                            |
-| ...                     | ...          | ...                                            |
-| psycopg2-binary         | latest       | Adaptador PostgreSQL                           |
-| django-environ          | latest       | Gerenciamento de variáveis de ambiente         |
-| drf-yasg                | latest       | Geração automática de documentação Swagger     |
-| ...                     | ...          | ...                                            |
+| Pacote                     | Versão       | Descrição                                                         |
+|----------------------------|--------------|-------------------------------------------------------------------|
+| django                     | >=5.0        | Framework web principal                                           |
+| djangorestframework        | latest       | Toolkit para construção de APIs REST                              |
+| django-filter              | latest       | Biblioteca para filtragem de consultas                            |
+| drf-spectacular[swagger-ui]| latest       | BIblioteca para documentação interativa Swagger UI                |
+| drf-spectacular[sidecar]   | latest       | Extensão para fornecer os arquivos estáticos do Swagger UI e Redoc|
+| django-environ             | latest       | Gerenciamento de variáveis de ambiente                            |
+| ...                        | ...          | ...                                                               |
 
-> **Nota:** Consulte o arquivo `requirements.txt` para a lista completa e versões exatas.
+
+> **Nota:** Consulte o arquivo `requirements.txt` para a lista completa.
 
 ## Estrutura do Projeto
 
