@@ -84,14 +84,16 @@ Liste todos os pacotes Python necessários, com versões recomendadas. Utilize u
 
 ## Estrutura do Projeto
 
-Apresente a organização dos diretórios e arquivos principais. Utilize uma árvore de diretórios para visualização clara.
 
 ```
 projeto_api/
+├── docs/
+│   └── database_diagram.png
 ├── manage.py
+├── README.md
 ├── requirements.txt
 ├── .env.example
-├── projeto/
+├── edutrack/
 │   ├── __init__.py
 │   ├── settings.py
 │   ├── urls.py
@@ -102,9 +104,7 @@ projeto_api/
 │   │   ├── views.py
 │   │   ├── serializers.py
 │   │   └── urls.py
-│   └── ...
-├── docs/
-│   └── database_diagram.png
+|   └── ...
 └── scripts/
     └── deploy.sh
 ```
