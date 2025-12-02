@@ -31,7 +31,37 @@
 
 ## Visão Geral
 
-Forneça uma descrição concisa do propósito da API, seus objetivos principais e o problema que resolve. Inclua informações sobre o domínio de aplicação, público-alvo e funcionalidades de alto nível.
+## Propósito do Projeto
+A EduTrack API é uma solução de backend RESTful desenvolvida para modernizar a gestão de frequência acadêmica. Seu propósito central é digitalizar o processo de chamada e fornecer dados estruturados para análise estatística, servindo como a espinha dorsal para aplicativos de diário de classe digital e para painéis de visualização de dados interativos que usam gráficos e tabelas para exibir indicadores-chave de desempenho e outras métricas de negócios em tempo real.
+
+## Problema que Resolve 
+O sistema aborda o desafio crítico do absenteísmo e da evasão escolar no ensino superior. Com dados do INEP apontando taxas de ausência de 20-30%, a falta de monitoramento em tempo real impede intervenções pedagógicas rápidas. A API resolve a ineficiência dos métodos manuais de chamada e a desconexão entre os dados operacionais (presença diária) e os indicadores estratégicos.
+
+## Objetivos Principais
+
+- Centralização de Dados: Gerenciar o ecossistema acadêmico (Professores, Turmas, Alunos) com integridade referencial.
+
+- Monitoramento Analítico: Permitir o cálculo de métricas de engajamento e equidade (gênero/frequência) para embasar políticas públicas.
+
+- Governança Estudantil: Suportar a gestão de representantes de turma para fortalecer a participação discente.
+
+- Segurança: Garantir controle de acesso granular via autenticação por tokens para diferentes perfis de usuários.
+
+## Público-Alvo
+
+- Público-Alvo: Instituições de Ensino (Gestores/Coordenação), Corpo Docente e Discentes.
+
+## Funcionalidades de Alto Nível
+
+- Gestão Acadêmica (CRUD): Cadastro e manutenção de Professores, Alunos e Turmas com validações rigorosas.
+
+- Registro de Frequência: Sistema flexível para marcar presença, ausência ou justificativa.
+
+- Relacionamentos Complexos: Gerenciamento de matrículas, atribuição de docentes e definição de representantes de turma (líderes).
+
+- Dashboards de Dados: Endpoints compostos para visualização consolidada de turmas e estatísticas de presença.
+
+- Controle de Acesso: Rotas públicas para transparência institucional e rotas protegidas para operações de escrita.
 
 ## Pacotes Utilizados
 
