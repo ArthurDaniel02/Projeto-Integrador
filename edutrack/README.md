@@ -22,6 +22,10 @@
 ## Sumário
 
 - [Visão Geral](#visão-geral)
+- [Problema que Resolve](#problema-que-resolve)
+- [Objetivos Principais](#objetivos-principais)
+- [Público Alvo](#público-alvo)
+- [Funcionalidades de Alto Nível](#funcionalidades-de-alto-nível)
 - [Pacotes Utilizados](#pacotes-utilizados)
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Diagrama de Banco de Dados](#diagrama-de-banco-de-dados)
@@ -30,8 +34,6 @@
 - [Deploy](#deploy)
 
 ## Visão Geral
-
-## Propósito do Projeto
 A EduTrack API é uma solução de backend RESTful desenvolvida para modernizar a gestão de frequência acadêmica. Seu propósito central é digitalizar o processo de chamada e fornecer dados estruturados para análise estatística, servindo como a espinha dorsal para aplicativos de diário de classe digital e para painéis de visualização de dados interativos que usam gráficos e tabelas para exibir indicadores-chave de desempenho e outras métricas de negócios em tempo real.
 
 ## Problema que Resolve 
