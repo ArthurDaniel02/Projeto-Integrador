@@ -71,6 +71,9 @@ Liste todos os pacotes Python necessários, com versões recomendadas. Utilize u
 |-------------------------|--------------|------------------------------------------------|
 | Django                  | >=5.0        | Framework web principal                        |
 | djangorestframework     | latest       | Toolkit para construção de APIs REST           |
+| django-filter           | 25.2         | Biblioteca para filtragem de consultas         |
+| ...                     | ...          | ...                                            |
+| ...                     | ...          | ...                                            |
 | psycopg2-binary         | latest       | Adaptador PostgreSQL                           |
 | django-environ          | latest       | Gerenciamento de variáveis de ambiente         |
 | drf-yasg                | latest       | Geração automática de documentação Swagger     |
