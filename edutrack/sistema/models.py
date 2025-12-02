@@ -12,7 +12,7 @@ class Professor(models.Model):
 class Aluno(models.Model):
     nome = models.CharField(max_length=255) 
     email = models.EmailField(max_length=255)
-    matricula = models.CharField(max_length=10)
+    matriculaA = models.CharField(max_length=10)
     curso = models.CharField(max_length=255) 
     data_nascimento = models.DateField()
 
@@ -24,7 +24,11 @@ class Aluno(models.Model):
     genero = models.CharField(choices=STATUS_CHOICES, max_length=2,default='M') 
     def __str__(self):
         return self.nome
- 
+class AlunoRep(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE) 
+    def __str__(self):
+        return self.aluno.nome 
+    
 class Turma(models.Model):
     nome = models.CharField(max_length=255) 
     descricao = models.CharField(max_length=255)
@@ -37,11 +41,14 @@ class Turma(models.Model):
     data_inicio = models.DateField()
     data_fim = models.DateField(null=True)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
-    alunoRep = models.OneToOneField(Aluno,on_delete=models.SET_NULL,unique= True)
+    alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
 
     def __str__(self):
         return self.nome
+    
+
+
  
 class Matricula(models.Model):
    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
@@ -71,7 +78,7 @@ class Presenca(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, max_length=11, default='Ausente')
     data = models.DateField()
     class Meta:
-        unique_together = ('matricula', 'data')
+        unique_together = ('matricula_id', 'data')
 
     def __str__(self):
-        return f"{self.matricula.aluno.nome} - {self.data} - {self.status}"
+        return f"{self.matriculaA.aluno.nome} - {self.data} - {self.status}"

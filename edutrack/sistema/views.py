@@ -1,6 +1,6 @@
 from rest_framework import viewsets 
-from .models import Aluno, Professor, Turma, Matricula, Presenca
-from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer
+from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep
+from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer
 from django_filters.rest_framework import DjangoFilterBackend 
 
 class AlunoViewSet(viewsets.ModelViewSet):
@@ -8,8 +8,12 @@ class AlunoViewSet(viewsets.ModelViewSet):
  serializer_class = AlunoSerializer 
 
  filter_backends = [DjangoFilterBackend] 
- filterset_fields = ['nome', 'matricula', 'curso', 'genero']
+ filterset_fields = ['nome', 'matriculaA', 'curso', 'genero']
 
+class AlunoRepViewSet(viewsets.ModelViewSet):
+ queryset = AlunoRep.objects.all()
+ serializer_class = AlunoRepSerializer 
+ 
 class ProfessorViewSet(viewsets.ModelViewSet):
  queryset = Professor.objects.all() 
  serializer_class = ProfessorSerializer 
