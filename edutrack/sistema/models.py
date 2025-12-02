@@ -37,7 +37,7 @@ class Turma(models.Model):
     data_inicio = models.DateField()
     data_fim = models.DateField()
     professor    = models.ForeignKey(Professor, on_delete=models.CASCADE) 
-    alunoRep = models.OneToOneField(Aluno,on_delete=models.CASCADE,unique= True)
+    alunoRep = models.OneToOneField(Aluno,on_delete=models.SET_NULL,unique= True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
 
     def __str__(self):
