@@ -90,7 +90,6 @@ projeto_api/
 ├── docs/
 │   └── database_diagram.png
 ├── manage.py
-├── README.md
 ├── requirements.txt
 ├── .env.example
 ├── edutrack/
