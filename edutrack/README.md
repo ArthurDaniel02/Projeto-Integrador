@@ -98,13 +98,12 @@ projeto_api/
 │   ├── settings.py
 │   ├── urls.py
 │   └── wsgi.py
-├── apps/
-│   ├── core/
-│   │   ├── models.py
-│   │   ├── views.py
-│   │   ├── serializers.py
-│   │   └── urls.py
-|   └── ...
+├── sistema/
+│   ├── models.py
+│   ├── views.py
+│   ├── serializers.py
+│   └── urls.py
+|  └── ...
 └── scripts/
     └── deploy.sh
 ```
