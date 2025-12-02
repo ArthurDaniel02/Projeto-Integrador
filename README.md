@@ -111,7 +111,7 @@ Descreva brevemente o propósito de cada diretório e módulo relevante.
 
 ## Diagrama de Banco de Dados
 
-![Diagrama de Banco de Dados](./edutrack/docs/database_diagram.png)
+![Diagrama de Banco de Dados](./edutrack/docs/database_diagram.PNG)
 
 > **Descrição:** Inclua um diagrama ER (Entidade-Relacionamento) gerado por ferramentas como `django-extensions` ou `pygraphviz`. Descreva as principais entidades, relacionamentos e campos críticos.
 
