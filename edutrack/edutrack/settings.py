@@ -46,60 +46,69 @@ REST_FRAMEWORK = {
  'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'API de Livros',
+    'TITLE': 'API Sistema de Chamada de Alunos',
     'DESCRIPTION': inspect.cleandoc("""
     ## Bem-vindo à API Sistema de Chamada de Alunos!
+
     - **Listar Professores** (`GET /api/professores/`) sem autenticação
-    - **Professor específico**(`GET /api/professores{id}/`) sem autenticação
+    - **Professor específico** (`GET /api/professores/{id}/`) sem autenticação
     - **Criar Professores** (`POST /api/professores/`) com autenticação
     - **Atualizar Professores** (`PUT/PATCH /api/professores/{id}/`) com autenticação
-    - **Excluir Professores** (`DELETE /api/professores/{id}/`) com autenticação                               
+    - **Excluir Professores** (`DELETE /api/professores/{id}/`) com autenticação
+
     - **Listar Alunos** (`GET /api/alunos/`) sem autenticação
-                                    
-    - **Aluno específico**(`GET /api/alunos{id}/`) sem autenticação
-    - **Criar alunos** (`POST /api/alunos/`) com autenticação
-    - **Atualizar alunos** (`PUT/PATCH /api/alunos/{id}/`) com autenticação
-    - **Excluir alunos** (`DELETE /api/alunos/{id}/`) com autenticação
-                                                    
+    - **Aluno específico** (`GET /api/alunos/{id}/`) sem autenticação
+    - **Criar Alunos** (`POST /api/alunos/`) com autenticação
+    - **Atualizar Alunos** (`PUT/PATCH /api/alunos/{id}/`) com autenticação
+    - **Excluir Alunos** (`DELETE /api/alunos/{id}/`) com autenticação
+
     - **Listar Turmas** (`GET /api/turmas/`) sem autenticação
-    - **Turma específico**(`GET /api/turmas{id}/`) sem autenticação
+    - **Turma específica** (`GET /api/turmas/{id}/`) sem autenticação
     - **Criar Turmas** (`POST /api/turmas/`) com autenticação
     - **Atualizar Turmas** (`PUT/PATCH /api/turmas/{id}/`) com autenticação
     - **Excluir Turmas** (`DELETE /api/turmas/{id}/`) com autenticação
-                                    
-    ### Rotas de Relacionamento
-    - Professor ↔ Turma (A-B): 
-        GET /api/professores/{id}/turmas/ - Lista turmas lecionadas pelo professor; 
-        POST /api/turmas/{id}/atribuir-professor/ - Atribui professor a turma.
-    - Turma ↔ Aluno (B-C): 
-        GET /api/turmas/{id}/alunos/ - Lista alunos matriculados;
-        POST /api/turmas/{id}/matricular-aluno/ - Matricula aluno na turma.
-    - Turma ↔ Aluno (Representante, 1:1): 
-        PUT /api/turmas/{id}/definir-representante/ - Define aluno como representante; 
-        GET /api/turmas/{id}/representante/ - Retorna representante.
-                                
-
     
+
+    ### Rotas de Relacionamento
+
+    - **Professor ↔ Turma (1:N)**  
+        - `GET /api/professores/{id}/turmas/` - lista turmas lecionadas pelo professor  
+        - `POST /api/turmas/{id}/atribuir-professor/` - atribui professor à turma  
+
+    - **Turma ↔ Aluno (N:N)**  
+        - `GET /api/turmas/{id}/alunos/` - lista alunos matriculados  
+        - `POST /api/turmas/{id}/matricular-aluno/` - matricula aluno na turma  
+
+    - **Turma ↔ Representante (1:1)**  
+        - `PUT /api/turmas/{id}/definir-representante/` - define aluno como representante  
+        - `GET /api/turmas/{id}/representante/` - retorna representante
+                                    
     ### Autenticação
     Use o endpoint `/api/token/` para obter seu token e inclua no cabeçalho:
+
     ```
     Authorization: Token <sua_chave>
     ```
     """),
+    
     'VERSION': '1.0.0',
+
     'SERVE_INCLUDE_SCHEMA': False,
+
     'SECURITY': [{'TokenAuth': []}],
+
     'COMPONENTS': {
-    'securitySchemes': {
-    'TokenAuth': {
-    'type': 'apiKey',
-    'in': 'header',
-    'name': 'Authorization',
-    'description': 'Use o formato: Token <sua_chave>',
- },
- },
- },
+        'securitySchemes': {
+            'TokenAuth': {
+                'type': 'apiKey',
+                'in': 'header',
+                'name': 'Authorization',
+                'description': 'Use o formato: Token <sua_chave>',
+            },
+        },
+    },
 }
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
