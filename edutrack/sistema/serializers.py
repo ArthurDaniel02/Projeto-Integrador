@@ -16,11 +16,17 @@ class TurmaSerializer(serializers.ModelSerializer):
  class Meta:
     model = Turma
     fields = '__all__' 
-class MatriculaSerializer(serializers.ModelSerializer):
- class Meta:
-    model = Matricula
-    fields = '__all__'
+
 class PresencaSerializer(serializers.ModelSerializer):
  class Meta:
     model = Presenca
     fields = '__all__' 
+
+class MatriculaSerializer(serializers.ModelSerializer):
+   total_presencas_presente = serializers.ReadOnlyField()
+   porcentagem_presenca = serializers.ReadOnlyField()
+   presencas = PresencaSerializer(many=True, read_only=True)
+
+   class Meta:
+      model = Matricula
+      fields = '__all__'

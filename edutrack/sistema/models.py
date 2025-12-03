@@ -12,7 +12,7 @@ class Professor(models.Model):
 class Aluno(models.Model):
     nome = models.CharField(max_length=255) 
     email = models.EmailField(max_length=255)
-    matriculaA = models.CharField(max_length=10)
+    matriculaA = models.CharField("Matrícula", max_length=10)
     curso = models.CharField(max_length=255) 
     data_nascimento = models.DateField()
 
@@ -21,7 +21,7 @@ class Aluno(models.Model):
             ('F', 'Feminino'),
             ('PN', 'Prefiro Não Informar'),
         ) 
-    genero = models.CharField(choices=STATUS_CHOICES, max_length=2,default='M') 
+    genero = models.CharField("Gênero", choices=STATUS_CHOICES, max_length=2, default='M')
     def __str__(self):
         return self.nome
 class AlunoRep(models.Model):
@@ -37,19 +37,16 @@ class Turma(models.Model):
             ('Concluída', 'Turma Concluída'),
             ('Cancelada', 'Turma Cancelada'),
         ) 
-    status = models.CharField(choices=STATUS_CHOICES, default='Ativa') 
+    status = models.CharField(choices=STATUS_CHOICES, default='Ativa')
     data_inicio = models.DateField()
-    data_fim = models.DateField(null=True)
+    data_fim = models.DateField(null=True,blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
-    alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True)
+    alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True,blank=True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
 
     def __str__(self):
         return self.nome
-    
 
-
- 
 class Matricula(models.Model):
    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
@@ -81,4 +78,8 @@ class Presenca(models.Model):
         unique_together = ('matricula_id', 'data')
 
     def __str__(self):
-        return f"{self.matriculaA.aluno.nome} - {self.data} - {self.status}"
+        try:
+            aluno_nome = self.matricula_id.aluno.nome
+        except Exception:
+            aluno_nome = str(self.matricula_id)
+        return f"{aluno_nome} - {self.data} - {self.status}"
