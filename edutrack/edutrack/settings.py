@@ -45,29 +45,35 @@ REST_FRAMEWORK = {
  ],
  'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
 SPECTACULAR_SETTINGS = {
     'TITLE': 'API Sistema de Chamada de Alunos',
+
     'DESCRIPTION': inspect.cleandoc("""
     ## Bem-vindo à API Sistema de Chamada de Alunos!
 
-    - **Listar Professores** (`GET /api/professores/`) sem autenticação
-    - **Professor específico** (`GET /api/professores/{id}/`) sem autenticação
-    - **Criar Professores** (`POST /api/professores/`) com autenticação
-    - **Atualizar Professores** (`PUT/PATCH /api/professores/{id}/`) com autenticação
-    - **Excluir Professores** (`DELETE /api/professores/{id}/`) com autenticação
+    ### Professores
+    - **Listar Professores** — `GET /api/professores/` *(público)*
+    - **Professor específico** — `GET /api/professores/{id}/` *(público)*
+    - **Criar Professores** — `POST /api/professores/` *(autenticado)*
+    - **Atualizar Professores** — `PUT/PATCH /api/professores/{id}/` *(autenticado)*
+    - **Excluir Professores** — `DELETE /api/professores/{id}/` *(autenticado)*
 
-    - **Listar Alunos** (`GET /api/alunos/`) sem autenticação
-    - **Aluno específico** (`GET /api/alunos/{id}/`) sem autenticação
-    - **Criar Alunos** (`POST /api/alunos/`) com autenticação
-    - **Atualizar Alunos** (`PUT/PATCH /api/alunos/{id}/`) com autenticação
-    - **Excluir Alunos** (`DELETE /api/alunos/{id}/`) com autenticação
+    ### Alunos
+    - **Listar Alunos** — `GET /api/alunos/` *(público)*
+    - **Aluno específico** — `GET /api/alunos/{id}/` *(público)*
+    - **Criar Alunos** — `POST /api/alunos/` *(autenticado)*
+    - **Atualizar Alunos** — `PUT/PATCH /api/alunos/{id}/` *(autenticado)*
+    - **Excluir Alunos** — `DELETE /api/alunos/{id}/` *(autenticado)*
 
-    - **Listar Turmas** (`GET /api/turmas/`) sem autenticação
-    - **Turma específica** (`GET /api/turmas/{id}/`) sem autenticação
-    - **Criar Turmas** (`POST /api/turmas/`) com autenticação
-    - **Atualizar Turmas** (`PUT/PATCH /api/turmas/{id}/`) com autenticação
-    - **Excluir Turmas** (`DELETE /api/turmas/{id}/`) com autenticação
-    
+    ### Turmas
+    - **Listar Turmas** — `GET /api/turmas/` *(público)*
+    - **Turma específica** — `GET /api/turmas/{id}/` *(público)*
+    - **Criar Turmas** — `POST /api/turmas/` *(autenticado)*
+    - **Atualizar Turmas** — `PUT/PATCH /api/turmas/{id}/` *(autenticado)*
+    - **Excluir Turmas** — `DELETE /api/turmas/{id}/` *(autenticado)*
+
+    ---
 
     ### Rotas de Relacionamento
 
@@ -82,6 +88,8 @@ SPECTACULAR_SETTINGS = {
     - **Turma ↔ Representante (1:1)**  
         - `PUT /api/turmas/{id}/definir-representante/` - define aluno como representante  
         - `GET /api/turmas/{id}/representante/` - retorna representante
+                                    
+    ---
                                     
     ### Autenticação
     Use o endpoint `/api/token/` para obter seu token e inclua no cabeçalho:
