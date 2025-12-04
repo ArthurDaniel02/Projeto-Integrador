@@ -136,8 +136,8 @@ Siga os passos abaixo para configurar o ambiente local.
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/usuario/projeto_api.git
-   cd projeto_api
+   git clone https://github.com/ArthurDaniel02/Projeto-Integrador.git
+   cd Projeto-Integrador
    ```
 
 2. **Crie um ambiente virtual:**
