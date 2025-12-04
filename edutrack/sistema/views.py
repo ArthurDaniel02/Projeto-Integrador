@@ -1,7 +1,7 @@
 from rest_framework import viewsets 
 from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep
-from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer
-from django_filters.rest_framework import DjangoFilterBackend 
+from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer, TurmaDashboardSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
@@ -43,6 +43,13 @@ class TurmaViewSet(viewsets.ModelViewSet):
         turma.save()
 
         return Response({"detail": "Representante definido!", "alunoRep": aluno_rep_id}, status=200)
+    
+    @action(detail=True, methods=['get'])
+    def dashboard(self, request, pk=None):
+        turma = self.get_object()
+        serializer = TurmaDashboardSerializer(turma)
+
+        return Response(serializer.data)
 
 class MatriculaViewSet(viewsets.ModelViewSet):
  queryset = Matricula.objects.all()
