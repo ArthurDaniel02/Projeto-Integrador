@@ -44,6 +44,16 @@ class TurmaViewSet(viewsets.ModelViewSet):
 
         return Response({"detail": "Representante definido!", "alunoRep": aluno_rep_id}, status=200)
     
+    @action(detail=True, methods=['get'], url_path='representante')
+    def representante(self, request, pk=None):
+        turma = self.get_object() 
+        alunorep = getattr(turma, 'alunoRep', None)
+        
+        if not alunorep:
+            return Response({'representante': None}, status=200) 
+        
+        return Response(AlunoRepSerializer(alunorep, context={'request': request}).data, status=200)
+    
     @action(detail=True, methods=['get'])
     def dashboard(self, request, pk=None):
         turma = self.get_object()
