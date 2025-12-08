@@ -60,3 +60,18 @@ class TurmaDashboardSerializer(serializers.ModelSerializer):
             'professor_email', 
             'alunos_matriculados'
         ]
+
+class AtribuirProfessorSerializer(serializers.Serializer):
+    professor_id = serializers.PrimaryKeyRelatedField(
+    queryset=Professor.objects.all()
+)
+
+class MatricularAlunoSerializer(serializers.Serializer):
+    aluno_id = serializers.PrimaryKeyRelatedField(
+    queryset=Aluno.objects.all()
+)
+
+class DefinirRepresentanteSerializer(serializers.Serializer):
+    alunoRep = serializers.PrimaryKeyRelatedField(
+    queryset=AlunoRep.objects.all()
+)

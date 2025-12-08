@@ -1,6 +1,6 @@
 from rest_framework import viewsets 
 from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep
-from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer, TurmaDashboardSerializer
+from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer, TurmaDashboardSerializer, AtribuirProfessorSerializer, MatricularAlunoSerializer, DefinirRepresentanteSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -24,6 +24,13 @@ class ProfessorViewSet(viewsets.ModelViewSet):
  filter_backends = [DjangoFilterBackend] 
  filterset_fields = ['nome', 'departamento', 'ativo']
 
+ @action(detail=True, methods=['get'])
+ def turmas(self, request, pk=None):
+     professor = self.get_object()
+     turmas = Turma.objects.filter(professor=professor)
+     serializer = TurmaSerializer(turmas, many=True)
+     return Response(serializer.data)
+
 class TurmaViewSet(viewsets.ModelViewSet):
     queryset = Turma.objects.all()
     serializer_class = TurmaSerializer 
@@ -31,7 +38,7 @@ class TurmaViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend] 
     filterset_fields = ['nome', 'status', 'professor_id', 'alunoRep_id']
 
-    @action(detail=True, methods=['put'], url_path='definir-representante')
+    @action(detail=True, methods=['put'], url_path='definir-representante', serializer_class=DefinirRepresentanteSerializer)
     def definir_representante(self, request, pk=None):
         turma = self.get_object()
         aluno_rep_id = request.data.get("alunoRep")
@@ -60,6 +67,54 @@ class TurmaViewSet(viewsets.ModelViewSet):
         serializer = TurmaDashboardSerializer(turma)
 
         return Response(serializer.data)
+    
+    @action(detail=True, methods=['post'], url_path='atribuir-professor', serializer_class=AtribuirProfessorSerializer)
+    def atribuir_professor(self, request, pk=None):
+        turma = self.get_object()
+        professor_id = request.data.get("professor_id")
+
+        if not professor_id:
+            return Response({"erro": "Envie professor_id"}, status=400)
+
+        try:
+            professor = Professor.objects.get(id=professor_id)
+        except Professor.DoesNotExist:
+            return Response({"erro": "Professor inexistente"}, status=404)
+
+        turma.professor = professor
+        turma.save()
+
+        return Response({"mensagem": "Professor atribuído com sucesso!"}, status=200)
+    
+    @action(detail=True, methods=['get'])
+    def alunos(self, request, pk=None):
+        turma = self.get_object()
+        matriculas = Matricula.objects.filter(turma=turma)
+
+        dados = []
+        for m in matriculas:
+            dados.append({
+                "matricula_id": m.id,
+                "data_matricula": m.data_matricula,
+                "aluno": AlunoSerializer(m.aluno).data
+            })
+
+        return Response(dados)
+    
+    @action(detail=True, methods=['post'], url_path='matricular-aluno', serializer_class=MatricularAlunoSerializer)
+    def matricular_aluno(self, request, pk=None):
+        turma = self.get_object()
+        aluno = Aluno.objects.filter(id=request.data.get("aluno_id")).first()
+
+        if not aluno:
+            return Response({"erro": "Aluno inexistente ou não enviado"}, status=400)
+
+        matricula, criada = Matricula.objects.get_or_create(
+            aluno=aluno,
+            turma=turma
+        )
+
+        return Response({"mensagem": "Aluno matriculado com sucesso!"}, status=200)
 
 class MatriculaViewSet(viewsets.ModelViewSet):
  queryset = Matricula.objects.all()

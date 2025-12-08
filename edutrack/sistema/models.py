@@ -6,6 +6,11 @@ class Professor(models.Model):
     departamento = models.CharField(max_length=255)
     ativo = models.BooleanField()
     data_cadastro = models.DateField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Professor"
+        verbose_name_plural = "Professores"
+
     def __str__(self):
         return self.nome 
  
@@ -26,6 +31,12 @@ class Aluno(models.Model):
         return self.nome
 class AlunoRep(models.Model):
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE) 
+
+    class Meta:
+        unique_together = ('aluno',)
+        verbose_name = "Aluno Representante"
+        verbose_name_plural = "Alunos Representantes"
+
     def __str__(self):
         return self.aluno.nome 
     
@@ -50,16 +61,12 @@ class Turma(models.Model):
 class Matricula(models.Model):
    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
-   data_matricula = models.DateField()
-   @property
-   def total_presencas_presente(self):
-       return self.presencas.filter(status='Presente').count()
-   @property
-   def porcentagem_presenca(self):
-       total_aulas = self.turma.presencas_turma.count()
-       if total_aulas == 0:
-           return 0
-       return round((self.total_presencas_presente / total_aulas) * 100, 1)
+   data_matricula = models.DateField(auto_now_add=True)
+   
+   class Meta:
+       unique_together = ('aluno', 'turma')
+       verbose_name = "Matrícula"
+       verbose_name_plural = "Matrículas"
   
    def __str__(self):
        return f"{self.aluno.nome} - {self.turma.nome}"
@@ -76,6 +83,8 @@ class Presenca(models.Model):
     data = models.DateField()
     class Meta:
         unique_together = ('matricula_id', 'data')
+        verbose_name = "Presença"
+        verbose_name_plural = "Presenças"
 
     def __str__(self):
         try:
