@@ -121,14 +121,26 @@ A documentação interativa está disponível em `/api/docs/` (Swagger UI) ou `/
 
 ### Endpoints Principais
 
-| Método | Endpoint              | Descrição                          | Autenticação |
-|--------|-----------------------|------------------------------------|--------------|
-| GET    | `/api/items/`         | Lista todos os itens               | Opcional     |
-| POST   | `/api/items/`         | Cria um novo item                  | Requerida    |
-| GET    | `/api/items/{id}/`    | Recupera um item específico        | Opcional     |
-| ...    | ...                   | ...                                | ...          |
+| Método | Endpoint                  | Descrição                     | Autenticação |
+|--------|---------------------------|-------------------------------|--------------|
+| GET    | /api/professores/         | Lista todos os professores     | Opcional     |
+| POST   | /api/professores/         | Cria um professor              | Requerida    |
+| GET    | /api/professores/{id}/    | Detalha um professor           | Opcional     |
+| PUT    | /api/professores/{id}/    | Atualiza um professor          | Requerida    |
+| DELETE | /api/professores/{id}/    | Remove um professor            | Requerida    |
+| GET    | /api/turmas/              | Lista todas as turmas          | Opcional     |
+| POST   | /api/turmas/              | Cria uma turma                 | Requerida    |
+| GET    | /api/turmas/{id}/         | Detalha uma turma              | Opcional     |
+| PUT    | /api/turmas/{id}/         | Atualiza uma turma             | Requerida    |
+| DELETE | /api/turmas/{id}/         | Remove uma turma               | Requerida    |
+| GET    | /api/alunos/              | Lista todos os alunos          | Opcional     |
+| POST   | /api/alunos/              | Cria um aluno                  | Requerida    |
+| GET    | /api/alunos/{id}/         | Detalha um aluno               | Opcional     |
+| PUT    | /api/alunos/{id}/         | Atualiza um aluno              | Requerida    |
+| DELETE | /api/alunos/{id}/         | Remove um aluno                | Requerida    |
 
-> **Detalhes:** Consulte a interface Swagger para schemas de request/response, parâmetros e exemplos.
+Detalhes: Consulte a interface Swagger para schemas completos, exemplos, parâmetros e códigos de resposta.
+
 
 ## Configuração do Ambiente
 
