@@ -105,8 +105,7 @@ projeto_api/
 │   └── urls.py
 |   └── ...
 |── db.sqlite3
-└── scripts/
-    └── deploy.sh
+└── 
 ```
 
 
