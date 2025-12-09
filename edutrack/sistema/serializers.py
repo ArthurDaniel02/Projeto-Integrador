@@ -28,8 +28,8 @@ class PresencaTurmaSerializer(serializers.ModelSerializer):
     fields = '__all__' 
 
 class MatriculaSerializer(serializers.ModelSerializer):
-   total_presencas_presente = serializers.ReadOnlyField(source='total_presencas_presente')
-   porcentagem_presenca = serializers.ReadOnlyField(source='porcentagem_presenca')
+   total_presencas_presente = serializers.ReadOnlyField()
+   porcentagem_presenca = serializers.ReadOnlyField()
    presencas = PresencaSerializer(many=True, read_only=True)
 
    class Meta:
