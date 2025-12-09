@@ -3,27 +3,19 @@ import inspect
 import os
 import environ
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = environ.Env()
 
-# Lê o arquivo .env (se ele existir, útil para seu computador local)
-environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+environ.Env.read_env(BASE_DIR / '.env')
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+SECRET_KEY = env('SECRET_KEY', default='django-insecure-chave-padrao-desenv')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ue0!bz172d6)6a--yjf)yy72c0r#3au(h_zz4+sch8kh4^$n5$'
+DEBUG = env.bool('DEBUG', default=True)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
 
 
