@@ -101,13 +101,15 @@ projeto_api/
 │   ├── models.py
 │   ├── views.py
 │   ├── serializers.py
+|   ├── admin.py
 │   └── urls.py
-|  └── ...
+|   └── ...
+|── db.sqlite3
 └── scripts/
     └── deploy.sh
 ```
 
-Descreva brevemente o propósito de cada diretório e módulo relevante.
+
 
 ## Diagrama de Banco de Dados
 
@@ -121,8 +123,8 @@ A documentação interativa está disponível em `/api/docs/` (Swagger UI) ou `/
 
 ### Endpoints Principais
 
-| Método | Endpoint                  | Descrição                     | Autenticação |
-|--------|---------------------------|-------------------------------|--------------|
+| Método | Endpoint                  | Descrição                      | Autenticação |
+|--------|---------------------------|--------------------------------|--------------|
 | GET    | /api/professores/         | Lista todos os professores     | Opcional     |
 | POST   | /api/professores/         | Cria um professor              | Requerida    |
 | GET    | /api/professores/{id}/    | Detalha um professor           | Opcional     |
