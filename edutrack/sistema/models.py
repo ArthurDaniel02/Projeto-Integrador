@@ -51,7 +51,7 @@ class Turma(models.Model):
     status = models.CharField(choices=STATUS_CHOICES, default='Ativa')
     data_inicio = models.DateField(auto_now_add=True)
     data_fim = models.DateField(null=True,blank=True)
-    professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE,limit_choices_to={'ativo': True}) 
     alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True,blank=True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
     @property
@@ -91,7 +91,7 @@ class Presenca(models.Model):
         ) 
     
     status = models.CharField(choices=STATUS_CHOICES, max_length=11, default='Ausente')
-    data = models.DateField(auto_now_add=True)
+    data = models.DateField()
     class Meta:
         unique_together = ('matricula_id', 'data')
         verbose_name = "Presença"
@@ -107,7 +107,7 @@ class Presenca(models.Model):
 class PresencaTurma(models.Model):
     turma_id = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name='presencasT') 
     status = models.BooleanField()
-    data = models.DateField(auto_now_add=True)
+    data = models.DateField()
     class Meta:
         unique_together = ('turma_id', 'data')
         verbose_name = "PresençaTurma"
