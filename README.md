@@ -1,3 +1,5 @@
+## 🚀 Live Demo
+> **Acesse a API em produção:** [https://edutrack-api-8sl3.onrender.com/api/docs/](https://edutrack-api-8sl3.onrender.com/api/docs/)
 
 # API Projeto Django
 
