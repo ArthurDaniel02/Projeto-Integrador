@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep
+from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep, PresencaTurma
 
 class AlunoSerializer(serializers.ModelSerializer):
  class Meta:
@@ -22,10 +22,14 @@ class PresencaSerializer(serializers.ModelSerializer):
  class Meta:
     model = Presenca
     fields = '__all__' 
+class PresencaTurmaSerializer(serializers.ModelSerializer):
+ class Meta:
+    model = PresencaTurma
+    fields = '__all__' 
 
 class MatriculaSerializer(serializers.ModelSerializer):
-   total_presencas_presente = serializers.ReadOnlyField()
-   porcentagem_presenca = serializers.ReadOnlyField()
+   total_presencas_presente = serializers.ReadOnlyField(source='total_presencas_presente')
+   porcentagem_presenca = serializers.ReadOnlyField(source='porcentagem_presenca')
    presencas = PresencaSerializer(many=True, read_only=True)
 
    class Meta:

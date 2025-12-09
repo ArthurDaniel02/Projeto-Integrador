@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Aluno, Professor, Turma, Presenca, Matricula,AlunoRep
+from .models import Aluno, Professor, Turma, Presenca, Matricula,AlunoRep,PresencaTurma
 from rest_framework.authtoken.models import Token
 
 @admin.register(Aluno)
@@ -25,6 +25,12 @@ class TurmaAdmin(admin.ModelAdmin):
 class PresencaAdmin(admin.ModelAdmin):
  list_display = ['matricula_id','status','data'] 
  search_fields = ['matricula_id','status','data'] 
+ list_filter = ['status'] 
+
+@admin.register(PresencaTurma)
+class PresencaTurmaAdmin(admin.ModelAdmin):
+ list_display = ['turma_id','status','data'] 
+ search_fields = ['turma_id','status','data'] 
  list_filter = ['status'] 
 
 

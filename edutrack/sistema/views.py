@@ -1,6 +1,6 @@
 from rest_framework import viewsets 
-from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep
-from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer, TurmaDashboardSerializer, AtribuirProfessorSerializer, MatricularAlunoSerializer, DefinirRepresentanteSerializer
+from .models import Aluno, Professor, Turma, Matricula, Presenca,AlunoRep, PresencaTurma
+from .serializers import AlunoSerializer, ProfessorSerializer, TurmaSerializer, PresencaTurmaSerializer, MatriculaSerializer, PresencaSerializer,AlunoRepSerializer, TurmaDashboardSerializer, AtribuirProfessorSerializer, MatricularAlunoSerializer, DefinirRepresentanteSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -129,3 +129,10 @@ class PresencaViewSet(viewsets.ModelViewSet):
 
  filter_backends = [DjangoFilterBackend] 
  filterset_fields = ['matricula_id_id', 'status']
+
+class PresencaTurmaViewSet(viewsets.ModelViewSet):
+    queryset = PresencaTurma.objects.all()
+    serializer_class = PresencaTurmaSerializer 
+
+    filter_backends = [DjangoFilterBackend] 
+    filterset_fields = ['turma_id_id', 'status']

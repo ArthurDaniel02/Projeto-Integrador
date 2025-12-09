@@ -54,6 +54,9 @@ class Turma(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
     alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True,blank=True)
     alunos = models.ManyToManyField(Aluno, through= 'Matricula')
+    @property
+    def presencas_turma(self):
+       return self.presencas.filter(status='Presente').count()
 
     def __str__(self):
         return self.nome
@@ -62,7 +65,15 @@ class Matricula(models.Model):
    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
    turma = models.ForeignKey(Turma, on_delete=models.CASCADE)
    data_matricula = models.DateField(auto_now_add=True)
-   
+   @property
+   def total_presencas_presente(self):
+       return self.presencas.filter(status='Presente').count()
+   @property
+   def porcentagem_presenca(self):
+       total_aulas = self.turma.presencasT.count()
+       if total_aulas == 0:
+           return 0
+       return round((self.total_presencas_presente / total_aulas) * 100, 1)
    class Meta:
        unique_together = ('aluno', 'turma')
        verbose_name = "Matrícula"
@@ -92,3 +103,20 @@ class Presenca(models.Model):
         except Exception:
             aluno_nome = str(self.matricula_id)
         return f"{aluno_nome} - {self.data} - {self.status}"
+    
+class PresencaTurma(models.Model):
+    turma_id = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name='presencasT') 
+    status = models.BooleanField()
+    data = models.DateField(auto_now_add=True)
+    class Meta:
+        unique_together = ('turma_id', 'data')
+        verbose_name = "PresençaTurma"
+        verbose_name_plural = "PresençasTurma"
+
+    def __str__(self):
+        try:
+            turma_nome = self.turma_id.turma.nome
+        except Exception:
+            turma_nome = str(self.turma_id)
+        return f"{turma_nome} - {self.data} - {self.status}"
+    
