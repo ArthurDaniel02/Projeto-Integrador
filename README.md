@@ -93,7 +93,6 @@ projeto_api/
 │   └── database_diagram.png
 ├── manage.py
 ├── requirements.txt
-├── .env.example
 ├── edutrack/
 │   ├── __init__.py
 │   ├── settings.py
@@ -179,28 +178,25 @@ Siga os passos abaixo para configurar o ambiente local.
    python manage.py runserver
    ```
 
-## Deploy(opcional)
+## ☁️ Deploy (Produção)
 
-### Plataforma Recomendada: [Render / Railway / AWS]
+A API está hospedada na plataforma **Render**, utilizando contêineres Docker nativos e banco de dados **PostgreSQL**.
 
-1. **Prepare o `Procfile`:**
-   ```
-   web: gunicorn projeto.wsgi:application --log-file -
-   ```
+### Configurações de Hospedagem
+- **Plataforma:** Render.com
+- **Servidor Web:** Gunicorn (WSGI)
+- **Banco de Dados:** PostgreSQL (Gerenciado pelo Render)
+- **Arquivos Estáticos:** WhiteNoise
 
-2. **Configure variáveis de ambiente** na plataforma de deploy.
+### Comandos de Build e Start
+Para referência, os comandos utilizados na configuração do serviço foram:
 
-3. **Execute migrações em produção:**
+1. **Root Directory:** `edutrack` (Pasta raiz do projeto)
+2. **Build Command:**
    ```bash
-   python manage.py migrate
-   ```
-
-4. **Colete arquivos estáticos (se aplicável):**
-   ```bash
-   python manage.py collectstatic
-   ```
-
-> **CI/CD:** Integração com GitHub Actions disponível em `.github/workflows/deploy.yml`.
+   pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate
+3. **Start Command:**
+   gunicorn edutrack.wsgi:application --log-file -
 
 
 
