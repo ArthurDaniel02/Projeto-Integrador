@@ -49,7 +49,7 @@ class Turma(models.Model):
             ('Cancelada', 'Turma Cancelada'),
         ) 
     status = models.CharField(choices=STATUS_CHOICES, default='Ativa')
-    data_inicio = models.DateField()
+    data_inicio = models.DateField(auto_now_add=True)
     data_fim = models.DateField(null=True,blank=True)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE) 
     alunoRep = models.ForeignKey(AlunoRep,on_delete=models.SET_NULL,unique= True,null = True,blank=True)
@@ -80,7 +80,7 @@ class Presenca(models.Model):
         ) 
     
     status = models.CharField(choices=STATUS_CHOICES, max_length=11, default='Ausente')
-    data = models.DateField()
+    data = models.DateField(auto_now_add=True)
     class Meta:
         unique_together = ('matricula_id', 'data')
         verbose_name = "Presença"

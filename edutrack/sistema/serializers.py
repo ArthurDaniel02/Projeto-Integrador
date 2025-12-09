@@ -39,7 +39,7 @@ class AlunoDashboardSerializer(serializers.ModelSerializer):
     porcentagem = serializers.ReadOnlyField(source='porcentagem_presenca')
 
     class Meta:
-        model = Matricula
+        model = Aluno
         fields = ['nome', 'matricula', 'presencas', 'porcentagem']
 
 
@@ -58,6 +58,7 @@ class TurmaDashboardSerializer(serializers.ModelSerializer):
             'status', 
             'professor_nome', 
             'professor_email', 
+            'alunoRep',
             'alunos_matriculados'
         ]
 
