@@ -4,3 +4,6 @@ djangorestframework
 drf-spectacular[swagger-ui]
 drf-spectacular[sidecar]
 django-environ
+gunicorn
+psycopg2-binary
+whitenoise
