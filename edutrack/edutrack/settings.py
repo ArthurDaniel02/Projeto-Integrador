@@ -1,6 +1,15 @@
 from pathlib import Path
 import inspect
 import os
+import environ
+
+env = environ.Env()
+
+# Lê o arquivo .env (se ele existir, útil para seu computador local)
+environ.Env.read_env(os.path.join(Path(__file__).resolve().parent.parent, '.env'))
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -152,9 +161,12 @@ WSGI_APPLICATION = 'edutrack.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
 DATABASES = {
-    'default': env.db(), # Isso vai pegar a URL do banco do Render automaticamente
+    'default': env.db(
+        # O Django vai procurar a variável DATABASE_URL. 
+        # Se não achar (no seu PC), usa o SQLite abaixo como padrão:
+        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}'
+    )
 }
 
 
