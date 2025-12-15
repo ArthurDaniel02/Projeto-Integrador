@@ -163,6 +163,7 @@ Siga os passos abaixo para configurar o ambiente local.
 
 3. **Instale as dependências:**
    ```bash
+   cd edutrack
    pip install -r requirements.txt
    ```
 
